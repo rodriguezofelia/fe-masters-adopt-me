@@ -6,6 +6,10 @@ import Results from "./Results";
 const ANIMALS = ["bird", "cat", "dog", "rabbit", "horse"];
 
 const SearchParams = () => {
+  // desctrucing output of useState
+  // the return value is always an array with two items
+  // first item is the state value
+  // second item is a function that updates that state value
   const [location, setLocation] = useState("");
   const [animal, setAnimal] = useState("");
   const [breed, setBreed] = useState("");
