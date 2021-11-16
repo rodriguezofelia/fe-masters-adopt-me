@@ -10,7 +10,6 @@ const Details = (props) => {
   //     loading = newValue
   // }
   const { id } = useParams();
-  console.log("id?", id);
   const [loading, setLoading] = useState(true);
   const [pet, setPet] = useState({});
 
@@ -27,8 +26,15 @@ const Details = (props) => {
     fetchPet();
   }, []);
 
+  const [toggleModal, setToggleModal] = useState(false);
+
+  const adopt = () => {
+    window.location = "http://bit.ly/pet-adopt";
+  };
+
   const { animal, breed, city, state, description, name, images, showModal } =
     pet;
+
   return loading ? (
     <h2>loading...</h2>
   ) : (
@@ -40,7 +46,7 @@ const Details = (props) => {
         <ThemeContext.Consumer>
           {([theme]) => (
             <button
-              // onClick={this.toggleModal}
+              onClick={() => setToggleModal(true)}
               style={{ backgroundColor: theme }}
             >
               Adopt {name}
@@ -48,13 +54,13 @@ const Details = (props) => {
           )}
         </ThemeContext.Consumer>
         <p>{description}</p>
-        {showModal ? (
+        {toggleModal ? (
           <Modal>
             <div>
               <h1>Would you like to adopt {name}?</h1>
               <div className="buttons">
-                {/* <button onClick={adopt}>Yes</button>
-                <button onClick={this.toggleModal}>No</button> */}
+                <button onClick={adopt}>Yes</button>
+                <button onClick={() => setToggleModal(false)}>No</button>
               </div>
             </div>
           </Modal>
